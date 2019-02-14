@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto.CrossCutting\Projeto.CrossCutting.csproj" />
+    <ProjectReference Include="..\Projeto.Domain.Entities\Projeto.Domain.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
