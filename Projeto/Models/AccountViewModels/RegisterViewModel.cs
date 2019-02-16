@@ -6,6 +6,18 @@ namespace Projeto.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required(ErrorMessage = Mensagens.CampoObrigatorio)]
+        [Display(Name = "Nome completo")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = Mensagens.CampoObrigatorio)]
+        [Display(Name = "CPF")]
+        public string Cpf { get; set; }
+
+        [Required(ErrorMessage = Mensagens.CampoObrigatorio)]
+        [Display(Name = "Celular")]
+        public string Cellphone { get; set; }
+
+        [Required(ErrorMessage = Mensagens.CampoObrigatorio)]
         [EmailAddress(ErrorMessage = Mensagens.CampoFormato)]
         [Display(Name = "E-mail")]
         public string Email { get; set; }

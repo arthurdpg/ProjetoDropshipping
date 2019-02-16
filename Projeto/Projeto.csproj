@@ -7,6 +7,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="FontAwesome" Version="4.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
@@ -23,6 +24,13 @@
     <ProjectReference Include="..\Projeto.DependencyResolver\Projeto.DependencyResolver.csproj" />
     <ProjectReference Include="..\Projeto.Domain.Entities\Projeto.Domain.Entities.csproj" />
     <ProjectReference Include="..\Projeto.Domain.Interfaces\Projeto.Domain.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\produtos\1\" />
+    <Folder Include="wwwroot\images\produtos\2\" />
+    <Folder Include="wwwroot\images\produtos\3\" />
+    <Folder Include="wwwroot\images\produtos\4\" />
   </ItemGroup>
 
 </Project>

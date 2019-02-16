@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Projeto.Domain.Entities;
+using Projeto.Domain.Interfaces;
 using Projeto.Models.AccountViewModels;
 
 namespace Projeto.Controllers
@@ -16,15 +17,18 @@ namespace Projeto.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IClienteBusiness _clienteBusiness;
         private readonly ILogger _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            IClienteBusiness clienteBusiness,
             ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _clienteBusiness = clienteBusiness;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
 
@@ -97,20 +101,27 @@ namespace Projeto.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var cliente = new Cliente { Nome = model.Name, Email = model.Email, Login = model.Email, Celular = model.Cellphone, Cpf = model.Cpf };
+
+                var resultado = _clienteBusiness.ValidarCadastroCliente(cliente);
+
+                if (resultado.Sucesso)
                 {
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
-                    // Send an email with this link
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                    //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        _clienteBusiness.Salvar(cliente);
+
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation(3, "User created a new account with password.");
+                        return RedirectToLocal(returnUrl);
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+                else
+                {
+                    AddError(resultado.Mensagem);
+                }
             }
 
             // If we got this far, something failed, redisplay form
@@ -356,8 +367,13 @@ namespace Projeto.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError(string.Empty, error.Description);
+                AddError(error.Description);
             }
+        }
+
+        private void AddError(string errorMessage)
+        {
+            ModelState.AddModelError(string.Empty, errorMessage);
         }
 
         private IActionResult RedirectToLocal(string returnUrl)

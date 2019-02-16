@@ -32,6 +32,11 @@ namespace Projeto.DependencyResolver
             services.AddTransient<IEmprestimoBusiness, EmprestimoBusiness>();
             services.AddTransient<IEmprestimoData, EmprestimoData>();
             services.AddTransient<IEmprestimoAmigoTituloBusiness, EmprestimoAmigoTituloBusiness>();
+
+            services.AddTransient<IClienteBusiness, ClienteBusiness>();
+            services.AddTransient<IPromocaoBusiness, PromocaoBusiness>();
+
+            services.AddTransient<IClienteData, ClienteData>();
         }
     }
 }

@@ -14,5 +14,7 @@ namespace Projeto.Data
         public virtual DbSet<Console> Consoles { get; set; }
         public virtual DbSet<Titulo> Titulos { get; set; }
         public virtual DbSet<Emprestimo> Emprestimos { get; set; }
+
+        public virtual DbSet<Cliente> Clientes { get; set; }
     }
 }
