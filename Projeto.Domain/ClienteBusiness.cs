@@ -24,9 +24,16 @@ namespace Projeto.Domain
             return _clienteData.ObterPorCpf(cpf);
         }
 
-        public void Salvar(Cliente cliente)
+        public ResultadoDto Salvar(Cliente cliente)
         {
-            throw new System.NotImplementedException();
+            var resultado = ValidarCadastroCliente(cliente);
+
+            if(resultado.Sucesso)
+            {
+                _clienteData.Salvar(cliente);
+                return new ResultadoDto(true);
+            }
+            return resultado;
         }
 
         public ResultadoDto ValidarCadastroCliente(Cliente novoCliente)

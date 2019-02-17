@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Projeto.CrossCutting;
+using Projeto.Validation;
 
 namespace Projeto.Models.AccountViewModels
 {
@@ -10,6 +11,7 @@ namespace Projeto.Models.AccountViewModels
         public string Name { get; set; }
 
         [Required(ErrorMessage = Mensagens.CampoObrigatorio)]
+        [CpfValidation(ErrorMessage = Mensagens.ValidacaoGeralCampoInvalido)]
         [Display(Name = "CPF")]
         public string Cpf { get; set; }
 

@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Promoções";
+}
+
+<div class="row">
+    <h4>Promoções</h4>
+    <hr />
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <table id="tabelaPromocoes"></table>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script type="text/javascript" language="javascript" src="lib/datatables/datatables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/js/promocoes.js"></script>
+}

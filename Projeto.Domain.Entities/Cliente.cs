@@ -1,14 +1,34 @@
 ﻿using Projeto.CrossCutting;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto.Domain.Entities
 {
+    [Table("CLIENTE")]
     public class Cliente
     {
+        [Column("CD_CLIENTE")]
+        [Key]
         public int Codigo { get; set; }
+
+        [Column("NM_CLIENTE")]
+        [Required(AllowEmptyStrings = false)]
         public string Nome { get; set; }
+
+        [Column("NR_CPF")]
+        [Required(AllowEmptyStrings = false)]
         public string Cpf { get; set; }
+
+        [Column("DS_EMAIL")]
+        [Required(AllowEmptyStrings = false)]
         public string Email { get; set; }
+
+        [Column("NM_USUARIO")]
+        [Required(AllowEmptyStrings = false)]
         public string Login { get; set; }
+
+        [Column("NR_CELULAR")]
+        [Required(AllowEmptyStrings = false)]
         public string Celular { get; set; }
 
         public bool Validar()

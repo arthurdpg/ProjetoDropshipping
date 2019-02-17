@@ -10,11 +10,9 @@ namespace Projeto.Data
         {
         }
 
-        public virtual DbSet<Amigo> Amigos { get; set; }
-        public virtual DbSet<Console> Consoles { get; set; }
-        public virtual DbSet<Titulo> Titulos { get; set; }
-        public virtual DbSet<Emprestimo> Emprestimos { get; set; }
-
         public virtual DbSet<Cliente> Clientes { get; set; }
+        public virtual DbSet<Promocao> Promocoes { get; set; }
+        public virtual DbSet<Produto> Produtos { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
     }
 }

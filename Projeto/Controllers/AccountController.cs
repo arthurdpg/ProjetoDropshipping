@@ -87,6 +87,12 @@ namespace Projeto.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+
+            //var viewModel = new RegisterViewModel
+            //{
+            //    Cellphone = "+55"
+            //};
+
             return View();
         }
 

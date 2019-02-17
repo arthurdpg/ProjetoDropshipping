@@ -5,12 +5,16 @@
     <UserSecretsId>aspnet-Projeto-864AD61D-DC53-453C-87C0-7E5753D08D64</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\images\shopping_cart.png" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="FontAwesome" Version="4.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +35,13 @@
     <Folder Include="wwwroot\images\produtos\2\" />
     <Folder Include="wwwroot\images\produtos\3\" />
     <Folder Include="wwwroot\images\produtos\4\" />
+    <Folder Include="wwwroot\lib\fontawesome\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Promocao\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

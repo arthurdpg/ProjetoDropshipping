@@ -7,6 +7,6 @@ namespace Projeto.Domain.Interfaces
         ResultadoDto ValidarCadastroCliente(Cliente novoCliente);
         Cliente ObterPorLogin(string login);
         Cliente ObterPorCpf(string cpf);
-        void Salvar(Cliente cliente);
+        ResultadoDto Salvar(Cliente cliente);
     }
 }

@@ -19,14 +19,14 @@
     <div class="form-group">
         <label asp-for="Cpf" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Cpf" class="form-control" maxlength="14" />
+            <input asp-for="Cpf" class="form-control" id="txtCPF" maxlength="14" />
             <span asp-validation-for="Cpf" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Cellphone" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Cellphone" class="form-control" />
+            <input asp-for="Cellphone" class="form-control" id="txtCellphone" maxlength="19" />
             <span asp-validation-for="Cellphone" class="text-danger"></span>
         </div>
     </div>
@@ -60,4 +60,5 @@
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script type="text/javascript" language="javascript" src="~/js/register.js"></script>
 }

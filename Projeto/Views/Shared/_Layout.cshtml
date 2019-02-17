@@ -34,12 +34,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Início</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li><a asp-area="" asp-controller="Amigo" asp-action="Index">Amigos</a></li>
-                        <li><a asp-area="" asp-controller="Jogo" asp-action="Index">Jogos</a></li>
-                        <li><a asp-area="" asp-controller="Emprestimo" asp-action="Index">Empréstimos</a></li>
+                        <li><a asp-area="" asp-controller="Promocao" asp-action="Index">Promoções</a></li>
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

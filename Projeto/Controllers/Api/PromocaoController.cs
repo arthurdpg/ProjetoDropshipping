@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Projeto.Domain.Entities;
 using Projeto.Domain.Interfaces;
-using System.Collections.Generic;
 
 namespace Projeto.Controllers.Api
 {
@@ -16,24 +14,13 @@ namespace Projeto.Controllers.Api
             _promocaoBusiness = promocaoBusiness;
         }
 
-        [HttpGet]
-        public List<Promocao> Get()
+        [HttpGet(Name = "GetPromocoes")]
+        public JsonResult Get()
         {
-            //var jogos = _tituloBusiness.Consultar(User.Identity.Name);
-            //var totalRegistros = jogos != null ? jogos.Count : 0;
+            var promocoes = _promocaoBusiness.Consultar();
+            var totalRegistros = promocoes != null ? promocoes.Count : 0;
 
-            //return Json(new { recordsTotal = totalRegistros, data = jogos });
-            return new List<Promocao>();
-        }
-
-        [HttpGet]
-        public Promocao Get(int codigo)
-        {
-            //var jogos = _tituloBusiness.Consultar(User.Identity.Name);
-            //var totalRegistros = jogos != null ? jogos.Count : 0;
-
-            //return Json(new { recordsTotal = totalRegistros, data = jogos });
-            return new Promocao();
+            return Json(new { recordsTotal = totalRegistros, data = promocoes });
         }
     }
 }

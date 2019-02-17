@@ -3,22 +3,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto.Domain.Entities
 {
-    [Table("PRODUTO")]
-    public class Produto
+    [Table("CATEGORIA")]
+    public class Categoria
     {
-        [Column("CD_PRODUTO")]
+        [Column("CD_CATEGORIA")]
         [Key]
         public int Codigo { get; set; }
 
-        [Column("NM_PRODUTO")]
+        [Column("DS_CATEGORIA")]
         [Required(AllowEmptyStrings = false)]
-        public string Nome { get; set; }
-
-        [Column("DS_PRODUTO")]
         public string Descricao { get; set; }
-
-        [ForeignKey("CD_CATEGORIA")]
-        [Required]
-        public Categoria Categoria { get; set; }
     }
 }
