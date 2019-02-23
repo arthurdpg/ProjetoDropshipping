@@ -12,10 +12,10 @@ var promocao = {
     },
 
     eventos: {
-        onClickInativar: function (codigo) {
+        onClickFinalizar: function (codigo) {
             bootbox.confirm({
                 title: "Confirmação",
-                message: "Deseja inativar a promoção selecionada?",
+                message: "Deseja finalizar a promoção selecionada?",
                 buttons: {
                     cancel: {
                         label: '<i class="fa fa-times"></i> Cancelar'
@@ -26,7 +26,7 @@ var promocao = {
                 },
                 callback: function (result) {
                     if (result) {
-                        promocao.inativarPromocao(codigo);
+                        promocao.finalizarPromocao(codigo);
                     }
                 }
             });
@@ -47,22 +47,17 @@ var promocao = {
                 "cache": false
             },
             "columns": [
-                { "sTitle": "Produto", "data": "produto.nome" },
-                //{ "sTitle": "", "data": "email" },
-                //{ "sTitle": "Quantidade", "data": "email" },
-                //{
-                //    "sTitle": "Data início", "data": "celular", "mRender": function (dado) {
-                //        return dado;
-                //    }
-                //},
-                //{
-                //    "sTitle": "Data fim", "data": "celular", "mRender": function (dado) {
-                //        return dado;
-                //    }
-                //},
+                { "sTitle": "Produto", "data": "nomeProduto" },
                 {
-                    "sTitle": "Ações", "data": "codigo", "mRender": function (codigo) {
-                        return "<input type='button' value='Inativar' onclick='promocao.eventos.onClickInativar(" + codigo + ")' />";
+                    "sTitle": "Imagem", "bSortable": false, "mRender": function (valor, tipo, objeto) {
+                        return "<img src='" + objeto.caminhoImagemProduto + "' alt='" + objeto.nomeProduto + "' height='150' width='125'>";
+                    }
+                },
+                { "sTitle": "Data início", "data": "dataInicio" },
+                { "sTitle": "Data fim", "data": "dataFim" },
+                {
+                    "sTitle": "Ações", "bSortable": false, "mRender": function (valor, tipo, objeto) {
+                        return !objeto.finalizada ? "<input type='button' value='Finalizar' onclick='promocao.eventos.onClickFinalizar(" + objeto.codigo + ")' />" : "";
                     }
                 }
             ]
@@ -73,14 +68,14 @@ var promocao = {
         promocao.tabela.api().ajax.reload();
     },
 
-    inativarPromocao: function (codigo) {
+    finalizarPromocao: function (codigo) {
         $.ajax({
-            url: '/Api/Promocao/Inativar',
+            url: '/Api/Promocao/Finalizar',
             type: 'PUT',
             data: { codigo: codigo },
             success: function (data) {
                 if (data.operacaoConcluidaComSucesso) {
-                    bootbox.alert("Promoção inativada com sucesso!", function () { promocao.redesenharTabela(); });
+                    bootbox.alert(data.mensagem, function () { promocao.redesenharTabela(); });
                 } else {
                     bootbox.alert(data.mensagem);
                 }

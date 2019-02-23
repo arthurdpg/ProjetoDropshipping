@@ -11,5 +11,9 @@
         public const string ValidacaoClienteCamposInvalidos = "Campos informados inválidos.";
         public const string ValidacaoClienteEmailDuplicado = "E-mail informado já cadastrado.";
         public const string ValidacaoClienteCpfDuplicado = "CPF informado já cadastrado.";
+
+        public const string MensagemOperacaoSucesso = "Operação realizada com sucesso!";
+        public const string MensagemOperacaoRegistroNaoEncontrado = "Registro informado não encontrado.";
+        public const string MensagemOperacaoErro = "Ocorreu um erro interno, favor contatar o administrador.";
     }
 }

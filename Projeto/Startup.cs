@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Projeto.Configuration;
 using Projeto.DependencyResolver;
 
 namespace Projeto
@@ -40,6 +41,8 @@ namespace Projeto
             {
                 connectionString = connectionString.Replace("%CONTENTROOTPATH%", _contentRootPath);
             }
+
+            services.Configure<FilesConfig>(Configuration.GetSection("Files"));
 
             MvcResolver.Init(services, connectionString);
             services.AddMvc();

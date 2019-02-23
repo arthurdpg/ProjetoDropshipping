@@ -7,5 +7,6 @@ namespace Projeto.Domain.Interfaces
     {
         List<Promocao> Consultar();
         List<Promocao> ConsultarAtivas(int quantidade);
+        ResultadoDto Finalizar(int codigo);
     }
 }

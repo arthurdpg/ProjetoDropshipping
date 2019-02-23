@@ -1,4 +1,5 @@
-﻿using Projeto.Data.Interfaces;
+﻿using Projeto.CrossCutting;
+using Projeto.Data.Interfaces;
 using Projeto.Domain.Entities;
 using Projeto.Domain.Interfaces;
 using System;
@@ -15,6 +16,11 @@ namespace Projeto.Domain
             _promocaoData = promocaoData;
         }
 
+        public Promocao Obter(int codigo)
+        {
+            return _promocaoData.Obter(codigo);
+        }
+
         public List<Promocao> Consultar()
         {
             return _promocaoData.Consultar();
@@ -23,6 +29,26 @@ namespace Projeto.Domain
         public List<Promocao> ConsultarAtivas(int quantidade)
         {
             return _promocaoData.ConsultarAtivas(DateTime.Now.Date, quantidade);
+        }
+
+        public ResultadoDto Finalizar(int codigo)
+        {
+            var promocao = Obter(codigo);
+
+            if (promocao == null)
+                return new ResultadoDto(false, Mensagens.MensagemOperacaoRegistroNaoEncontrado);
+
+            promocao.DataFim = DateTime.Now;
+
+            try
+            {
+                _promocaoData.Salvar(promocao);
+                return new ResultadoDto(true, Mensagens.MensagemOperacaoSucesso);
+            }
+            catch (Exception)
+            {
+                return new ResultadoDto(false, Mensagens.MensagemOperacaoErro);
+            }
         }
     }
 }

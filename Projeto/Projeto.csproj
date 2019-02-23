@@ -31,8 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\produtos\1\" />
-    <Folder Include="wwwroot\images\produtos\2\" />
     <Folder Include="wwwroot\images\produtos\3\" />
     <Folder Include="wwwroot\images\produtos\4\" />
     <Folder Include="wwwroot\lib\fontawesome\" />

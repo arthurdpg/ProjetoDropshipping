@@ -31,5 +31,13 @@ namespace Projeto.Data
                 .Take(quantidade)
                 .ToList();
         }
+
+        public void Salvar(Promocao promocao)
+        {
+            if (promocao.Codigo == 0)
+                Context.Promocoes.Add(promocao);
+
+            Context.SaveChanges();
+        }
     }
 }
