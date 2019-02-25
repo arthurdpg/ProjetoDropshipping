@@ -20,5 +20,13 @@ namespace Projeto.Domain.Entities
         [ForeignKey("CD_CATEGORIA")]
         [Required]
         public Categoria Categoria { get; set; }
+
+        [Column("NR_PRECO")]
+        [Required]
+        public decimal Preco { get; set; }
+
+        [Column("NR_AVALIACAO")]
+        [Required]
+        public decimal Avaliacao { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@using Projeto.CrossCutting
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,12 +31,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Projeto</a>
+                @*<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Projeto</a>*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Início</a></li>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && User.IsInRole(Perfis.Administrador))
                     {
                         <li><a asp-area="" asp-controller="Promocao" asp-action="Index">Promoções</a></li>
                     }
@@ -57,7 +58,7 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/lib/bootbox/bootbox.min.js"></script>
         <script src="~/lib/maskedinput/jquery.maskedinput.min.js"></script>
-        @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+        <script src="~/js/loading.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -74,7 +75,7 @@
         </script>
         <script src="~/lib/bootbox/bootbox.min.js"></script>
         <script src="~/lib/maskedinput/jquery.maskedinput.min.js"></script>
-        @*<script src="~/js/site.min.js" asp-append-version="true"></script>*@
+        <script src="~/js/loading.js"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

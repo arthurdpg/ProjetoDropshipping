@@ -28,6 +28,7 @@ namespace Projeto.Data
                 .Include(p => p.Produto)
                 .OrderByDescending(p => p.DataInicio)
                 .Where(p => p.DataInicio <= data && (p.DataFim == null || p.DataFim >= data))
+                .OrderByDescending(p => p.DataInicio)
                 .Take(quantidade)
                 .ToList();
         }

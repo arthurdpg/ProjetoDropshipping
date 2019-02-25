@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Projeto.Configuration;
-using Projeto.CrossCutting;
 using Projeto.Domain.Entities;
 using Projeto.Domain.Interfaces;
 using System.Collections.Generic;
@@ -21,10 +20,21 @@ namespace Projeto.Controllers.Api
             _filesConfig = filesConfig;
         }
 
-        [HttpGet(Name = "GetPromocoes")]
+        [Route("Promocoes")]
+        [HttpGet(Name = "Promocoes")]
         public JsonResult Get()
         {
             var promocoes =  ConverterResultado(_promocaoBusiness.Consultar());
+            var totalRegistros = promocoes != null ? promocoes.Count : 0;
+
+            return Json(new { recordsTotal = totalRegistros, data = promocoes });
+        }
+
+        [Route("PromocoesRecentes")]
+        [HttpGet(Name = "PromocoesRecentes")]
+        public JsonResult GetPromocoesRecentes(int quantidade)
+        {
+            var promocoes = ConverterResultado(_promocaoBusiness.ConsultarAtivas(quantidade));
             var totalRegistros = promocoes != null ? promocoes.Count : 0;
 
             return Json(new { recordsTotal = totalRegistros, data = promocoes });
@@ -45,15 +55,10 @@ namespace Projeto.Controllers.Api
             var resultado = new List<PromocaoDto>();
             promocoes.ForEach(p =>
             {
-                resultado.Add(new PromocaoDto
-                {
-                    Codigo = p.Codigo,
-                    NomeProduto = p.Produto.Nome,
-                    DataInicio = p.DataInicio.ToString(Formatos.FormatoDataPtBr),
-                    DataFim = p.DataFim.HasValue ? p.DataFim.Value.ToString(Formatos.FormatoDataPtBr) : string.Empty,
-                    Finalizada = p.DataFim.HasValue,
-                    CaminhoImagemProduto = ImagemHelper.GetImagemProduto(_filesConfig.Value, p.Produto.Codigo)
-                });
+                var promocao = new PromocaoDto(p);
+                promocao.CaminhoImagemProduto = ImagemHelper.GetImagemProduto(_filesConfig.Value, p.Produto.Codigo);
+
+                resultado.Add(promocao);
             });
 
             return resultado;

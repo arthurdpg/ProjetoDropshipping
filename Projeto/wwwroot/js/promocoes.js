@@ -41,7 +41,7 @@ var promocao = {
             "searching": false,
             "ajax":
             {
-                "url": "/Api/Promocao",
+                "url": "/Api/Promocao/Promocoes",
                 "type": "GET",
                 "dataType": "JSON",
                 "cache": false
@@ -55,6 +55,7 @@ var promocao = {
                 },
                 { "sTitle": "Data início", "data": "dataInicio" },
                 { "sTitle": "Data fim", "data": "dataFim" },
+                { "sTitle": "Desconto", "data": "desconto" },
                 {
                     "sTitle": "Ações", "bSortable": false, "mRender": function (valor, tipo, objeto) {
                         return !objeto.finalizada ? "<input type='button' value='Finalizar' onclick='promocao.eventos.onClickFinalizar(" + objeto.codigo + ")' />" : "";

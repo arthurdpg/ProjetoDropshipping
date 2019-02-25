@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using Projeto.CrossCutting;
 using Projeto.Domain.Entities;
 using Projeto.Domain.Interfaces;
 using Projeto.Models.AccountViewModels;
@@ -88,11 +89,6 @@ namespace Projeto.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
 
-            //var viewModel = new RegisterViewModel
-            //{
-            //    Cellphone = "+55"
-            //};
-
             return View();
         }
 
@@ -117,6 +113,7 @@ namespace Projeto.Controllers
                     if (result.Succeeded)
                     {
                         _clienteBusiness.Salvar(cliente);
+                        await AddClaims(user);
 
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         _logger.LogInformation(3, "User created a new account with password.");
@@ -392,6 +389,13 @@ namespace Projeto.Controllers
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
+        }
+
+        private async Task<bool> AddClaims(ApplicationUser user)
+        {
+            await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, Perfis.Cliente));
+
+            return true;
         }
 
         #endregion
