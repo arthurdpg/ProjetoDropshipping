@@ -31,10 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\lib\fontawesome\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="Views\Promocao\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
