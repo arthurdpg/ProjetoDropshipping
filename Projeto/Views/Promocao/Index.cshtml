@@ -1,16 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Promoções";
 }
-
 <div class="row">
     <h4>Promoções</h4>
     <hr />
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-        <table id="tabelaPromocoes"></table>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <table id="tabelaPromocoes" class="table table-striped" style="width:100%"></table>
     </div>
 </div>
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script type="text/javascript" language="javascript" src="lib/datatables/datatables.min.js"></script>
+    @*<script type="text/javascript" language="javascript" src="~/lib/datatables/dataTables.bootstrap.min.js"></script>*@
     <script type="text/javascript" language="javascript" src="~/js/promocoes.js" asp-append-version="true"></script>
 }

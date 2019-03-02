@@ -31,6 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\MeusPedidos\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Promocao\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

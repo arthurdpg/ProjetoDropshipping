@@ -47,17 +47,17 @@ var promocao = {
                 "cache": false
             },
             "columns": [
-                { "sTitle": "Produto", "data": "nomeProduto" },
+                { "sTitle": "Produto", "data": "nomeProduto", "sWidth": "35%" },
                 {
-                    "sTitle": "Imagem", "bSortable": false, "mRender": function (valor, tipo, objeto) {
+                    "sTitle": "Imagem", "bSortable": false, "sWidth": "15%", "mRender": function (valor, tipo, objeto) {
                         return "<img src='" + objeto.caminhoImagemProduto + "' alt='" + objeto.nomeProduto + "' height='150' width='125'>";
                     }
                 },
-                { "sTitle": "Data início", "data": "dataInicio" },
-                { "sTitle": "Data fim", "data": "dataFim" },
-                { "sTitle": "Desconto", "data": "desconto" },
+                { "sTitle": "Data início", "data": "dataInicio", "sWidth": "10%" },
+                { "sTitle": "Data fim", "data": "dataFim", "sWidth": "10%" },
+                { "sTitle": "Desconto", "data": "desconto", "sWidth": "5%" },
                 {
-                    "sTitle": "Ações", "bSortable": false, "mRender": function (valor, tipo, objeto) {
+                    "sTitle": "Ações", "bSortable": false, "sWidth": "5%", "mRender": function (valor, tipo, objeto) {
                         return !objeto.finalizada ? "<input type='button' value='Finalizar' onclick='promocao.eventos.onClickFinalizar(" + objeto.codigo + ")' />" : "";
                     }
                 }

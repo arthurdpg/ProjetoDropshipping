@@ -36,9 +36,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Início</a></li>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole(Perfis.Administrador))
+                    @if (User.Identity.IsAuthenticated && User.IsInRole(Perfis.Lojista))
                     {
                         <li><a asp-area="" asp-controller="Promocao" asp-action="Index">Promoções</a></li>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole(Perfis.Cliente))
+                    {
+                        <li><a asp-area="" asp-controller="MeusPedidos" asp-action="Index">Meus pedidos</a></li>
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

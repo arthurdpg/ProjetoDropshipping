@@ -33,15 +33,15 @@ namespace Projeto.Domain
 
         public ResultadoDto Finalizar(int codigo)
         {
-            var promocao = Obter(codigo);
-
-            if (promocao == null)
-                return new ResultadoDto(false, Mensagens.MensagemOperacaoRegistroNaoEncontrado);
-
-            promocao.DataFim = DateTime.Now;
-
             try
             {
+                var promocao = Obter(codigo);
+
+                if (promocao == null)
+                    return new ResultadoDto(false, Mensagens.MensagemOperacaoRegistroNaoEncontrado);
+
+                promocao.DataFim = DateTime.Now;
+
                 _promocaoData.Salvar(promocao);
                 return new ResultadoDto(true, Mensagens.MensagemOperacaoSucesso);
             }

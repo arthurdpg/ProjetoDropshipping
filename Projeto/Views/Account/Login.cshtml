@@ -32,11 +32,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">Entrar</button>
+                    <button type="submit" class="btn btn-default" id="btnLogin">Entrar</button>
                 </div>
                 <div class="form-group">
                     <p>
                         <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Novo por aqui?</a>
+                    </p>
+                    <p>
+                        <a asp-action="ForgotPassword">Esqueceu sua senha?</a>
                     </p>
                 </div>
             </form>

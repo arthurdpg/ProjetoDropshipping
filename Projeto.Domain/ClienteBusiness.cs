@@ -2,6 +2,7 @@
 using Projeto.Data.Interfaces;
 using Projeto.Domain.Entities;
 using Projeto.Domain.Interfaces;
+using System;
 
 namespace Projeto.Domain
 {
@@ -26,14 +27,21 @@ namespace Projeto.Domain
 
         public ResultadoDto Salvar(Cliente cliente)
         {
-            var resultado = ValidarCadastroCliente(cliente);
-
-            if(resultado.Sucesso)
+            try
             {
-                _clienteData.Salvar(cliente);
-                return new ResultadoDto(true);
+                var resultado = ValidarCadastroCliente(cliente);
+
+                if (resultado.Sucesso)
+                {
+                    _clienteData.Salvar(cliente);
+                    return new ResultadoDto(true, Mensagens.MensagemOperacaoSucesso);
+                }
+                return resultado;
             }
-            return resultado;
+            catch (Exception)
+            {
+                return new ResultadoDto(false, Mensagens.MensagemOperacaoErro);
+            }
         }
 
         public ResultadoDto ValidarCadastroCliente(Cliente novoCliente)
@@ -43,7 +51,7 @@ namespace Projeto.Domain
             if (!valido)
                 return new ResultadoDto(false, Mensagens.ValidacaoClienteCamposInvalidos);
 
-            if (ObterPorCpf(novoCliente.Login) != null)
+            if (ObterPorCpf(novoCliente.Cpf) != null)
                 return new ResultadoDto(false, Mensagens.ValidacaoClienteCpfDuplicado);
 
             if (ObterPorLogin(novoCliente.Login) != null)
