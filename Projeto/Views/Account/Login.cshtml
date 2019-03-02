@@ -12,35 +12,37 @@
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                 <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="RememberMe">
-                            <input asp-for="RememberMe" />
-                            @Html.DisplayNameFor(m => m.RememberMe)
-                        </label>
+                <div class="col-md-offset-5">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default" id="btnLogin">Entrar</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Novo por aqui?</a>
-                    </p>
-                    <p>
-                        <a asp-action="ForgotPassword">Esqueceu sua senha?</a>
-                    </p>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label asp-for="RememberMe">
+                                <input asp-for="RememberMe" />
+                                @Html.DisplayNameFor(m => m.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" id="btnLogin">Entrar</button>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            Novo por aqui? <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Cadastre-se</a>
+                        </p>
+                        <p>
+                            <a asp-action="ForgotPassword">Esqueci minha senha</a>
+                        </p>
+                    </div>
                 </div>
             </form>
         </section>
