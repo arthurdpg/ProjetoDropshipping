@@ -28,7 +28,7 @@ namespace Projeto.Domain
 
         public List<Promocao> ConsultarAtivas(int quantidade)
         {
-            return _promocaoData.ConsultarAtivas(DateTime.Now.Date, quantidade);
+            return _promocaoData.ConsultarAtivas(DateTime.Now, quantidade);
         }
 
         public ResultadoDto Finalizar(int codigo)
